@@ -24,10 +24,12 @@
             <RowConstraints vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="textNo" layoutX="186.0" layoutY="54.0" maxWidth="-Infinity" minWidth="-Infinity" onAction="#onAction" text="000000" GridPane.columnIndex="1" />
             <Label layoutX="84.0" layoutY="51.0" text="Номер выписки" />
             <Label text="ФИО пациента" GridPane.rowIndex="1" />
-            <FormattedTextField maxWidth="-Infinity" minWidth="-Infinity" text="000000" limit="6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <FormattedTextField fx:id="textNo" format="\\\d*" limit="6" maxWidth="-Infinity" minWidth="-Infinity" text="000000" GridPane.columnIndex="1" />
+            <FormattedTextField fx:id="name" limit="50" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <FormattedTextField fx:id="patronymic" limit="50" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <FormattedTextField fx:id="surname" limit="50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
