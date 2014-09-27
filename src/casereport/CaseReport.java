@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.CaseRecord;
 
 /**
  *
@@ -30,6 +31,21 @@ public class CaseReport extends Application {
         stage.setTitle("Выписка из истории болезни");
         
         stage.show();
+        
+        CaseRecord record = new CaseRecord("1", "A", "B", "C");
+        
+        System.out.println( 
+            ((Parent)
+                ((Parent)
+                    ((Parent)
+                        ((Parent) root.getChildrenUnmodifiable().get(1)
+                        ).getChildrenUnmodifiable().get(0) 
+                    ).getChildrenUnmodifiable().get(0)
+                ).getChildrenUnmodifiable().get(0)
+            ).getChildrenUnmodifiable().size()
+        );
+        
+        
     }
 
     /**
