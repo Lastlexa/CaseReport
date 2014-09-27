@@ -5,11 +5,13 @@
  */
 package casereport;
 
+import fxcontrol.FormattedTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 /**
@@ -19,7 +21,13 @@ import javafx.scene.control.TextField;
  */
 public class MainDataController implements Initializable {
     @FXML
-    private TextField textNo;
+    private FormattedTextField textNo;
+    @FXML
+    private FormattedTextField name;
+    @FXML
+    private FormattedTextField patronymic;
+    @FXML
+    private FormattedTextField surname;
 
     /**
      * Initializes the controller class.
@@ -27,10 +35,8 @@ public class MainDataController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println(("MainDataController"));
     }    
 
-    @FXML
-    private void onAction(ActionEvent event) {
-    }
     
 }
