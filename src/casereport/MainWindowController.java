@@ -7,7 +7,9 @@ package casereport;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 
 /**
@@ -15,15 +17,21 @@ import javafx.fxml.Initializable;
  *
  * @author Alex
  */
-public class MainWindowController implements Initializable {
-
+public class MainWindowController {
+    
+    @FXML 
+    private MainDataController mainDataController;
     /**
      * Initializes the controller class.
      */
-    @Override
+   // @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        //mainDataController = 
+    }
+    
+    public MainDataController getMainDataController() {
+        return mainDataController;
+    };
 
     
 }
