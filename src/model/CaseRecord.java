@@ -6,6 +6,12 @@
 package model;
 
 import java.util.Date;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,38 +23,39 @@ import javax.xml.bind.annotation.XmlElement;
 public class CaseRecord {
     private boolean changed = false;
     // Поля модели
-    private StringProperty no         = new SimpleStringProperty();
-    private String name       ;//= new SimpleStringProperty();
-    private String surname    ;//= new SimpleStringProperty();
-    private String patronymic ;//= new SimpleStringProperty();
+    // Основная информация
+    private StringProperty no = new SimpleStringProperty();
+    private StringProperty name       = new SimpleStringProperty();
+    private StringProperty surname    = new SimpleStringProperty();
+    private StringProperty patronymic = new SimpleStringProperty();
     
-    private Date birthday = new Date();
-    private Date presenceFrom = new Date();
-    private Date presenceTo = new Date();
+    private ObjectProperty<Date> birthday = new SimpleObjectProperty<Date>();
+    private ObjectProperty<Date> presenceFrom = new SimpleObjectProperty<Date>();
+    private ObjectProperty<Date> presenceTo = new SimpleObjectProperty<Date>();
     // Диагноз и заболевания
 //    private Diagnosis diagnosis;
-    private String    diagnosisText;
-    private Integer   diagnosisIndex;
-    private boolean noDiseaseSide = true;
-    private boolean leftDiseaseSide = false;
-    private boolean rightDiseaseSide = false;
-    private boolean twoDiseaseSides = false;
-    private String[] complications;
-    private String[] otherDiseases;
-    private String desc;
+    private StringProperty  diagnosisText  = new SimpleStringProperty();
+    private IntegerProperty diagnosisIndex = new SimpleIntegerProperty();
+    private BooleanProperty noDiseaseSide  = new SimpleBooleanProperty(true);
+    private BooleanProperty leftDiseaseSide  = new SimpleBooleanProperty(false);
+    private BooleanProperty rightDiseaseSide = new SimpleBooleanProperty(false);
+    private BooleanProperty twoDiseaseSides  = new SimpleBooleanProperty(false);
+    private StringProperty[] complications;
+    private StringProperty[] otherDiseases;
+    private StringProperty desc = new SimpleStringProperty();;
     // Операция
 //    private Operation operation;
-    private String    operationText;
-    private Integer   operationIndex;
-    private Date operationDate = new Date();
-    private boolean noOperationSide = true;
-    private boolean leftOperationSide = false;
-    private boolean rightOperationSide = false;
-    private boolean twoOperationSides = false;
+    private StringProperty    operationText   = new SimpleStringProperty();;
+    private IntegerProperty   operationIndex   = new SimpleIntegerProperty();
+    private ObjectProperty<Date> operationDate = new SimpleObjectProperty<Date>();
+    private BooleanProperty noOperationSide    = new SimpleBooleanProperty(true);
+    private BooleanProperty leftOperationSide  = new SimpleBooleanProperty(false);
+    private BooleanProperty rightOperationSide = new SimpleBooleanProperty(false);
+    private BooleanProperty twoOperationSides  = new SimpleBooleanProperty(false);
     // Швы
-    private boolean omitStitches = true;
-    private boolean removedStitches = false;
-    private boolean notRemovedStitches = false;
+    private BooleanProperty omitStitches = new SimpleBooleanProperty(true);
+    private BooleanProperty removedStitches = new SimpleBooleanProperty(false);
+    private BooleanProperty notRemovedStitches = new SimpleBooleanProperty(false);
 
     public CaseRecord(String no, String surname, String name, String patronimyc) {
         setNo(no);
@@ -67,10 +74,7 @@ public class CaseRecord {
         setName("");
         setPatronymic("");
     }
-    /**
-     * 
-     * @param newVal
-     */
+
     public void setChanged(boolean changed){
         this.changed = changed;
     }
@@ -78,371 +82,331 @@ public class CaseRecord {
     public boolean getChanged(){
         return this.changed;
     }
-
-    /**
-     * 
-     * @param newVal
-     */
+    
+    // property: no
     @XmlElement(name="No")
     public final void setNo(String no){
         this.no.set(no);
         setChanged(true);
     }
-
     public final String getNo(){return this.no.get();}
-    
+
     public StringProperty noProperty() {return no;}
 
-    /**
-     * 
-     * @param newVal
-     */
+    // property: name
     public void setName(String name){
-        //    firePropertyChange("name", this.name, this.name = name);
+        this.name.set(name);
         setChanged(true);
     }
 
     public String getName(){
-        return this.name;
+        return name.get();
     }
 
+    public StringProperty nameProperty() {return name;}
+
+    // property: surname
     public String getSurname(){
-        return surname;
+        return surname.get();
     }
-
-    /**
-     * 
-     * @param newVal
-     */
+    
     public void setSurname(String surname){
-        //firePropertyChange("surname", this.surname, this.surname = surname);
+        this.surname.set(surname);
         setChanged(true);
     }
 
+    public StringProperty surnameProperty() {return surname;}
+
+    // property: patronymic
     public String getPatronymic(){
-        return patronymic;
+        return patronymic.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setPatronymic(String patronymic){
-        //firePropertyChange("patronymic", this.patronymic, this.patronymic = patronymic);
+        this.patronymic.set(patronymic);
         setChanged(true);
     }
 
+    public StringProperty patronymicProperty() {return surname;}
+
+    // property: birthday
     public Date getBirthday(){
-        return birthday;
+        return birthday.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setBirthday(Date birthday){
-        //firePropertyChange("birthday", this.birthday, this.birthday = birthday);
+        this.birthday.set(birthday);
         setChanged(true);
     }
 
+    public ObjectProperty<Date> birthdayProperty() {return birthday;}
+
+    // property: presenceFrom
     public Date getPresenceFrom(){
-        return presenceFrom;
+        return presenceFrom.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setPresenceFrom(Date presenceFrom){
-        //firePropertyChange("presenceFrom", this.presenceFrom, this.presenceFrom = presenceFrom);
+        this.presenceFrom.set(presenceFrom);
         setChanged(true);
     }
 
+    public ObjectProperty<Date> presenceFromProperty() {return presenceFrom;}
+
+    // property: presenceTo
     public Date getPresenceTo(){
-        return presenceTo;
+        return presenceTo.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setPresenceTo(Date presenceTo){
-        //firePropertyChange("presenceTo", this.presenceTo, this.presenceTo = presenceTo);
+        this.presenceTo.set(presenceTo);
         setChanged(true);
     }
+
+    public ObjectProperty<Date> presenceToProperty() {return presenceTo;}
 
     //public Diagnosis getDiagnosis(){
     //    return diagnosis;
     //}
 
-    /**
-     * 
-     * @param newVal
-     */
     //public void setDiagnosis(Diagnosis diagnosis){
         //firePropertyChange("diagnosis", this.diagnosis, this.diagnosis = diagnosis);
     //}
 
+    // property: diagnosisText
     public String getDiagnosisText(){
-        return diagnosisText;
+        return diagnosisText.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setDiagnosisText(String diagnosisText){
-        //firePropertyChange("diagnosisText", this.diagnosisText, this.diagnosisText = diagnosisText);
+        this.diagnosisText.set(diagnosisText);
         setChanged(true);
     }
 
+    public StringProperty diagnosisTextProperty() {return diagnosisText;}
+
+    // property: diagnosisIndex
     public Integer getDiagnosisIndex(){
-        return diagnosisIndex;
+        return diagnosisIndex.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setDiagnosisIndex(Integer diagnosisIndex){
-        //firePropertyChange("diagnosisIndex", this.diagnosisIndex, this.diagnosisIndex = diagnosisIndex);
+        this.diagnosisIndex.set(diagnosisIndex);
     }
 
+    public IntegerProperty diagnosisIndexProperty() {return diagnosisIndex;}
+
+    // property: noDiseaseSide
     public boolean getNoDiseaseSide(){
-        return noDiseaseSide;
+        return noDiseaseSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setNoDiseaseSide(boolean noDiseaseSide){
-        //firePropertyChange("noDiseaseSide", this.noDiseaseSide, this.noDiseaseSide = noDiseaseSide);
+        this.noDiseaseSide.set(noDiseaseSide);
         setChanged(true);
     }
 
+    public BooleanProperty noDiseaseSideProperty() {return noDiseaseSide;}
+
+    // property: leftDiseaseSide
     public boolean getLeftDiseaseSide(){
-        return leftDiseaseSide;
+        return leftDiseaseSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setLeftDiseaseSide(boolean leftDiseaseSide){
-        //firePropertyChange("leftDiseaseSide", this.leftDiseaseSide, this.leftDiseaseSide = leftDiseaseSide);
+        this.leftDiseaseSide.set(leftDiseaseSide);
         setChanged(true);
     }
 
+    public BooleanProperty leftDiseaseSideProperty() {return leftDiseaseSide;}
+
+    // property: rightDiseaseSide
     public boolean getRightDiseaseSide(){
-        return rightDiseaseSide;
+        return rightDiseaseSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setRightDiseaseSide(boolean rightDiseaseSide){
-        //firePropertyChange("rightDiseaseSide", this.rightDiseaseSide, this.rightDiseaseSide = rightDiseaseSide);
+        this.rightDiseaseSide.set(rightDiseaseSide);
         setChanged(true);
     }
 
+    public BooleanProperty rightDiseaseSideProperty() {return rightDiseaseSide;}
+
+    // property: twoDiseaseSide
     public boolean getTwoDiseaseSides(){
-        return twoDiseaseSides;
+        return twoDiseaseSides.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setTwoDiseaseSides(boolean twoDiseaseSides){
-        //firePropertyChange("twoDiseaseSides", this.twoDiseaseSides, this.twoDiseaseSides = twoDiseaseSides);
+        this.twoDiseaseSides.set(twoDiseaseSides);
         setChanged(true);
     }
 
-    public String[] getComplications(){
-        return complications;
-    }
+    public BooleanProperty twoDiseaseSidesProperty() {return twoDiseaseSides;}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setComplications(String[] newVal){
-        complications = newVal;
-    }
+    // property: complications
+    //public String[] getComplications(){
+    //    return complications.;
+    //}
 
-    public String[] getOtherDiseases(){
-        return otherDiseases;
-    }
+    //public void setComplications(String[] newVal){
+    //    complications = newVal;
+    //}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOtherDiseases(String[] newVal){
-        otherDiseases = newVal;
-    }
+   // public StringProperty[] complicationsProperty() {return complications;}
 
+    // property: twoDiseaseSide
+    //public String[] getOtherDiseases(){
+    //    return otherDiseases;
+   // }
+
+    //public void setOtherDiseases(String[] newVal){
+    //    otherDiseases = newVal;
+    //}
+
+    // property: desc
     public String getDesc(){
-        return desc;
+        return desc.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setDesc(String desc){
-        //firePropertyChange("desc", this.desc, this.desc = desc);
+        this.desc.set(desc);
         setChanged(true);
     }
 
+    public StringProperty descProperty() {return desc;}
+
+    // property: diagnosisIndex
     //public Operation getOperation(){
     //    return operation;
     //}
 
-    /**
-     * 
-     * @param newVal
-     */
     //public void setOperation(Operation operation){
         //firePropertyChange("operation", this.operation, this.operation = operation);
     //}
 
+    // property: operationText
     public String getOperationText(){
-            return operationText;
+            return operationText.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setOperationText(String operationText){
-        //firePropertyChange("operationText", this.operationText, this.operationText = operationText);
+        this.operationText.set(operationText);
         setChanged(true);
     }
 
+    public StringProperty operationTextProperty() {return operationText;}
+
+    // property: operationIndex
     public Integer getOperationIndex(){
-        return operationIndex;
+        return operationIndex.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setOperationIndex(Integer operationIndex){
-        //firePropertyChange("operationIndex", this.operationIndex, this.operationIndex = operationIndex);
+        this.operationIndex.set(operationIndex);
     }
 
+    public IntegerProperty operationIndexProperty() {return operationIndex;}
+
+    // property: operationDate
     public Date getOperationDate(){
-        return operationDate;
+        return operationDate.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setOperationDate(Date operationDate){
-        //firePropertyChange("operationDate", this.operationDate, this.operationDate = operationDate);
+        this.operationDate.set(operationDate);
         setChanged(true);
     }
 
+    public ObjectProperty<Date> operationDateProperty() {return operationDate;}
+
+    // property: noOperationSide
     public boolean getNoOperationSide(){
-        return noOperationSide;
+        return noOperationSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setNoOperationSide(boolean noOperationSide){
-        //firePropertyChange("noOperationSide", this.noOperationSide, this.noOperationSide = noOperationSide);
+        this.noOperationSide.set(noOperationSide);
         setChanged(true);
     }
 
+    public BooleanProperty noOperationSideProperty() {return noOperationSide;}
+
+    // property: leftOperationSide
     public boolean getLeftOperationSide(){
-        return leftOperationSide;
+        return leftOperationSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setLeftOperationSide(boolean leftOperationSide){
-        //firePropertyChange("leftOperationSide", this.leftOperationSide, this.leftOperationSide = leftOperationSide);
+        this.leftOperationSide.set(leftOperationSide);
         setChanged(true);
     }
 
+    public BooleanProperty leftOperationSideProperty() {return leftOperationSide;}
 
+    // property: rightOperationSide
     public boolean getRightOperationSide(){
-        return rightOperationSide;
+        return rightOperationSide.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setRightOperationSide(boolean rightOperationSide){
-        //firePropertyChange("rightOperationSide", this.rightOperationSide, this.rightOperationSide = rightOperationSide);
+        this.rightOperationSide.set(rightOperationSide);
         setChanged(true);
     }
 
+    public BooleanProperty rightOperationSideProperty() {return rightOperationSide;}
+
+    // property: twoOperationSides
     public boolean getTwoOperationSides(){
-        return twoOperationSides;
+        return twoOperationSides.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setTwoOperationSides(boolean twoOperationSides){
-        //firePropertyChange("twoOperationSides", this.twoOperationSides, this.twoOperationSides = twoOperationSides);
+        this.twoOperationSides.set(twoOperationSides);
         setChanged(true);
     }
 
+    public BooleanProperty twoOperationSidesProperty() {return twoOperationSides;}
+
+    // property: omitStitches
     public boolean getOmitStitches(){
-        return omitStitches;
+        return omitStitches.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setOmitStitches(boolean omitStitches){
-        //firePropertyChange("omitStitches", this.omitStitches, this.omitStitches = omitStitches);
+        this.omitStitches.set(omitStitches);
         setChanged(true);
     }
 
+    public BooleanProperty omitStitchesProperty() {return omitStitches;}
+
+    // property: removedStitches
     public boolean getRemovedStitches(){
-        return removedStitches;
+        return removedStitches.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setRemovedStitches(boolean removedStitches){
-        //firePropertyChange("removedStitches", this.removedStitches, this.removedStitches = removedStitches);
+        this.removedStitches.set(removedStitches);
         setChanged(true);
     }
 
+    public BooleanProperty removedStitchesProperty() {return removedStitches;}
+
+    // property: notRemovedStitches
     public boolean getNotRemovedStitches(){
-        return notRemovedStitches;
+        return notRemovedStitches.get();
     }
 
-    /**
-     * 
-     * @param newVal
-     */
     public void setNotRemovedStitches(boolean notRemovedStitches){
-        //firePropertyChange("notRemovedStitches", this.notRemovedStitches, this.notRemovedStitches = notRemovedStitches);
+        this.notRemovedStitches.set(notRemovedStitches);
         setChanged(true);
     }
+
+    public BooleanProperty notRemovedStitchesProperty() {return notRemovedStitches;}
 
     //@Override
     public String toString() {
-        return surname + "_" + name.charAt(0) + patronymic.charAt(0) + " (" + no + ")";
+        return getSurname() + "_" + getName().charAt(0) + getPatronymic().charAt(0) + " (" + getNo() + ")";
     }
-
 
 }
