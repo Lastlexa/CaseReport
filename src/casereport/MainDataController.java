@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  *
  * @author Alex
  */
-public class MainDataController implements Initializable {
+public class MainDataController {
     @FXML
     private FormattedTextField textNo;
     @FXML
@@ -32,11 +32,18 @@ public class MainDataController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+    //@Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println(("MainDataController"));
+        //System.out.println(("MainDataController"));
     }    
 
-    
+    public FormattedTextField getTextNo(){
+        return textNo;
+    }
+
+    public FormattedTextField getName(){
+        return name;
+    }
+
 }
