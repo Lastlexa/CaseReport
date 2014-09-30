@@ -40,7 +40,7 @@
               <tabs>
                 <Tab text="Основные данные">
                      <content>
-                        <fx:include source="MainData.fxml" />
+                        <fx:include fx:id="mainData" source="MainData.fxml" />
                      </content>
                 </Tab>
                 <Tab text="Амбулаторное обследование">
