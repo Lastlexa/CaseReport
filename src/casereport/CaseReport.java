@@ -43,9 +43,8 @@ public class CaseReport extends Application {
         model.loadDict();
 	model.setRecord(new CaseRecord("123456", "Иванов", "Петр", "Семеныч"));
         
-        
-        
-        //MainWindowController mainController = loader.getController();
+        MainWindowController mainController = loader.getController();
+        mainController.bind(model);
                 
         //mainController.getMainDataController().getTextNo().textProperty().bindBidirectional(this.text);
         //mainController.getMainDataController().getName().textProperty().bindBidirectional(this.text);
