@@ -8,11 +8,8 @@ package casereport;
 import fxcontrol.FormattedTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import model.Model;
 
 /**
  * FXML Controller class
@@ -44,6 +41,15 @@ public class MainDataController {
 
     public FormattedTextField getName(){
         return name;
+    }
+
+    public void bind(Model model) {
+        if( model.getRecord() != null) {
+            textNo.textProperty().bindBidirectional(model.getRecord().noProperty());
+            name.textProperty().bindBidirectional(model.getRecord().nameProperty());
+            surname.textProperty().bindBidirectional(model.getRecord().surnameProperty());
+            patronymic.textProperty().bindBidirectional(model.getRecord().patronymicProperty());
+        } 
     }
 
 }
