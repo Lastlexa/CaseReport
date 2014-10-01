@@ -8,8 +8,7 @@ package casereport;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
+import model.Model;
 
 
 /**
@@ -33,5 +32,8 @@ public class MainWindowController {
         return mainDataController;
     };
 
+    public void bind(Model model) {
+        mainDataController.bind(model);
+    }
     
 }
